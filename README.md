@@ -11,7 +11,7 @@ The application uses several AWS resources, including Lambda function, an API Ga
 
 If you prefer to use an integrated development environment (IDE) to build and test your application, you can use the AWS Toolkit.  
 
-## Link to FrontEnd code
+[Frontend Code](https://github.com/kalebtodjo/cloud-resume-frontend)
 
 ## Deploy the sample application
 
