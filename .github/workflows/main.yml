@@ -16,12 +16,6 @@ jobs:
           aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}  # Add session token here
           aws-region: us-east-1
 
-      - name: Install AWS SAM CLI
-        run: |
-          curl -Lo sam.tar.gz https://github.com/aws/aws-sam-cli/releases/latest/download/aws-sam-cli-linux-x86_64.tar.gz
-          tar -xzf sam.tar.gz -C /usr/local/bin
-          rm sam.tar.gz
-
       # Check SAM CLI Version
       - name: Verify SAM CLI installation
         run: sam --version
