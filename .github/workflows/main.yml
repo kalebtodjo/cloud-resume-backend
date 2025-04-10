@@ -24,7 +24,7 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: us-east-1
       # Build
-      - run: sam build 
+      - run: python3.13 -m sam build
       # Validate .yaml template file
       - run: sam validate
       # Prevent prompts and failure when the stack is unchanged
