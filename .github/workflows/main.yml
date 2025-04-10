@@ -8,6 +8,21 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: aws-actions/setup-sam@v2
+      - name: Set up pyenv
+        run: |
+          curl https://pyenv.run | bash
+          echo 'export PATH="$HOME/.pyenv/bin:$PATH"' >> ~/.bashrc
+          echo 'eval "$(pyenv init --path)"' >> ~/.bashrc
+          echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+          source ~/.bashrc
+          pyenv install 3.13.0
+          pyenv global 3.13.0
+      - name: Check environment details
+        run: |
+          echo $PATH
+          python3 --version
+          which python3
+          
       - name: Set up Python 3.13
         uses: actions/setup-python@v4
         with:
