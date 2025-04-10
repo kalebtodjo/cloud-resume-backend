@@ -14,9 +14,6 @@ def lambda_handler(event, context):
 
     context: object, required
         Lambda Context runtime methods and attributes
-
-        Context doc: https://docs.aws.amazon.com/lambda/latest/dg/python-context-object.html
-
     """
     # Get the service resource.
     dynamodb = boto3.resource('dynamodb')
