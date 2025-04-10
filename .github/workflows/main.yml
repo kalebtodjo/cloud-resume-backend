@@ -13,25 +13,28 @@ jobs:
         with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}
+          aws-session-token: ${{ secrets.AWS_SESSION_TOKEN }}  # Add session token here
           aws-region: us-east-1
-      # Install SAM CLI
+
+      # Install AWS SAM CLI
       - name: Install AWS SAM CLI
         run: |
-          curl -Lo sam-installation-script.sh https://github.com/aws/aws-sam-cli/releases/download/v2.0.0/aws-sam-cli-linux-x86_64.zip
-          chmod +x sam-installation-script.sh
-          ./sam-installation-script.sh
-      # Install dependencies if any
-      - name: Install dependencies
-        run: |
-          python3.13 -m pip install --upgrade pip
-          python3.13 -m pip install -r requirements.txt
-      # Build the SAM application
+          curl -Lo sam.tar.gz https://github.com/aws/aws-sam-cli/releases/download/v2.0.0/aws-sam-cli-linux-x86_64.tar.gz
+          tar -xzf sam.tar.gz -C /usr/local/bin
+          rm sam.tar.gz
+
+      # Check SAM CLI Version
+      - name: Verify SAM CLI installation
+        run: sam --version
+
+      # Build with SAM
       - name: Build with SAM CLI
-        run: python3.13 -m sam build
+        run: sam build
+
       # Validate the SAM template
       - name: Validate SAM template
         run: sam validate
+
       # Deploy the SAM application
       - name: Deploy with SAM CLI
         run: sam deploy --no-confirm-changeset --no-fail-on-empty-changeset
